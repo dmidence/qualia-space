@@ -1,0 +1,26 @@
+.nav-landing {
+  height: 10vh;
+  width: 100%;
+  background-color: rgba(37, 35, 39, 0.7);
+  box-shadow: 1px 5px 29px 1px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 1px 5px 29px 1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 1px 5px 29px 1px rgba(0, 0, 0, 0.75);
+  position: fixed;
+  top: 0;
+  color: white;
+}
+
+.nav-item-custom {
+  text-decoration: none;
+  cursor: pointer;
+  color: white;
+  transition: color 0.3s;
+}
+.nav-item-custom:hover {
+  color: #6069b8;
+}
+
+.img-logo-size {
+  height: 8vh;
+  width: auto;
+}
