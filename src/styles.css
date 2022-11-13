@@ -4,3 +4,36 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.bg-main-section {
+  min-height: 100vh;
+  width: 100%;
+  padding-top: 10vh;
+  padding-bottom: 10vh;
+}
+
+.bg-forms {
+  background: url("./assets/img/bg-login.jpg");
+  background-size: cover;
+}
+
+.bg-blur {
+  background-color: rgba(233, 233, 233, 0.7);
+  width: 400px;
+  margin: auto;
+  backdrop-filter: blur(9px);
+}
+
+.img-form {
+  width: 150px;
+  height: auto;
+}
+
+.btn-space {
+  background-color: #6e47a4;
+  color: white;
+}
+.btn-space:hover {
+  background-color: #4e2587;
+  color: white;
+}
