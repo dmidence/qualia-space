@@ -1,0 +1,51 @@
+<app-landing-navbar> </app-landing-navbar>
+<main
+  class="bg-main-section bg-forms d-flex justify-content-center align-items-center"
+>
+  <div class="container bg-blur p-4">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+      <img class="img-fluid img-form" src="assets/img/logo-black.png" alt="" />
+      <h4 class="mt-2">Inicio de Sesión</h4>
+    </div>
+
+    <form class="w-100">
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Correo </label>
+        <input
+          type="email"
+          aria-describedby="emailHelp"
+          class="form-control"
+          id="email"
+          name="email"
+          [(ngModel)]="user.email"
+        />
+        <div id="emailHelp" class="form-text">
+          No compartiremos tu correo con nadie
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          name="password"
+          [(ngModel)]="user.password"
+        />
+      </div>
+      <!-- <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+        <label class="form-check-label" for="exampleCheck1"
+          >No soy un robot</label
+        >
+      </div> -->
+      <div class="d-flex flex-column justify-content-center align-items-center">
+        <button type="submit" class="btn btn-space" (click)="Login()">
+          Iniciar Sesión
+        </button>
+      </div>
+    </form>
+  </div>
+</main>
+
+<app-landing-footer></app-landing-footer>
