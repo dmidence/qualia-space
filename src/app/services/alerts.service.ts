@@ -12,4 +12,11 @@ export class AlertsService {
       text: text,
     });
   }
+  successAlert(title: string, text: string) {
+    return Swal.fire({
+      icon: 'success',
+      title: title,
+      text: text,
+    });
+  }
 }

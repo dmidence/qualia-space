@@ -12,6 +12,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterUserComponent } from './pages/register-user/register-user.component';
 import { RegisterEnterpriseComponent } from './pages/register-enterprise/register-enterprise.component';
 import { HomeuserComponent } from './pages/homeuser/homeuser.component';
+import { HomeenterpriseComponent } from './pages/homeenterprise/homeenterprise.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { HomeuserComponent } from './pages/homeuser/homeuser.component';
     RegisterUserComponent,
     RegisterEnterpriseComponent,
     HomeuserComponent,
+    HomeenterpriseComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
