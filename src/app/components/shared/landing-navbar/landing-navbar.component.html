@@ -1,6 +1,6 @@
 <nav class="navbar nav-landing">
   <div class="container-fluid">
-    <a class="navbar-brand text-white">
+    <a class="navbar-brand text-white cpointer" [routerLink]="['/']">
       <img
         class="img-fluid img-logo-size"
         src="../../../../assets/img/logo.png"
@@ -10,9 +10,18 @@
     >
     <div class="d-flex" role="search">
       <img src="" alt="" />
-      <a class="ps-2 nav-item-custom">Registrar Empresa</a>
-      <a class="ps-2 nav-item-custom">Registro</a>
-      <a class="ps-2 nav-item-custom">Inicio de Sesión</a>
+      <a class="ps-2 nav-item-custom" [routerLink]="['/', 'registere']"
+        >Registrar Empresa</a
+      >
+      <a
+        class="ps-2 nav-item-custom"
+        href="pages/register-user/register-user.html"
+        [routerLink]="['/', 'registeru']"
+        >Registro</a
+      >
+      <a class="ps-2 nav-item-custom" [routerLink]="['/', 'login']"
+        >Inicio de Sesión</a
+      >
     </div>
   </div>
 </nav>

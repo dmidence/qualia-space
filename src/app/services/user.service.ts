@@ -22,6 +22,14 @@ export class UserService {
       this.httpOptions
     );
   }
+  register(user: any) {
+    return this.http.post(
+      this.API_Url_Users + '/register',
+      user,
+      this.httpOptions
+    );
+  }
+
   getUsers() {
     return this.http.get<any[]>(this.API_Url_Users, this.httpOptions);
   }

@@ -6,6 +6,7 @@ import { RegisterEnterpriseComponent } from './pages/register-enterprise/registe
 import { RegisterUserComponent } from './pages/register-user/register-user.component';
 import { HomeuserComponent } from './pages/homeuser/homeuser.component';
 import { AuthGuard } from './guard/auth.guard';
+import { HomeenterpriseComponent } from './pages/homeenterprise/homeenterprise.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -13,6 +14,11 @@ const routes: Routes = [
   { path: 'registeru', component: RegisterUserComponent },
   { path: 'registere', component: RegisterEnterpriseComponent },
   { path: 'homeu', component: HomeuserComponent, canActivate: [AuthGuard] },
+  {
+    path: 'homee',
+    component: HomeenterpriseComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({

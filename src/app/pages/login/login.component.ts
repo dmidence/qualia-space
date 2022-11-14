@@ -21,9 +21,13 @@ export class LoginComponent implements OnInit {
 
   Login() {
     this.http.login(this.user).subscribe({
-      next: (res) => {
+      next: (res: any) => {
         sessionStorage.setItem('qspaceuser', JSON.stringify(res));
-        this.router.navigate(['/', 'homeu']);
+        if (res.dataUser.user_type == 'simple') {
+          this.router.navigate(['/', 'homeu']);
+        } else {
+          this.router.navigate(['/', 'homee']);
+        }
       },
       error: (e) => {
         this.alert.errorAlert(

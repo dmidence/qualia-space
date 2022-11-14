@@ -10,30 +10,36 @@
 
     <form class="w-100 row m-0 p-0">
       <div class="mb-3 col-6">
-        <label for="firstname" class="form-label">Nombre </label>
+        <label for="firstname" class="form-label">Nombre</label>
         <input
-          type="email"
-          class="form-control"
-          id="exampleInputEmail1"
           aria-describedby="emailHelp"
+          id="exampleInputEmail1"
+          class="form-control"
+          type="text"
+          name="first_name"
+          [(ngModel)]="user.first_name"
         />
       </div>
       <div class="mb-3 col-6">
         <label for="name" class="form-label">Apellido </label>
         <input
-          type="email"
+          type="text"
           class="form-control"
           id="exampleInputEmail1"
           aria-describedby="emailHelp"
+          name="last_name"
+          [(ngModel)]="user.last_name"
         />
       </div>
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Correo </label>
         <input
-          type="email"
-          class="form-control"
-          id="exampleInputEmail1"
           aria-describedby="emailHelp"
+          class="form-control"
+          type="email"
+          id="exampleInputEmail1"
+          name="email"
+          [(ngModel)]="user.email"
         />
         <!-- <div id="emailHelp" class="form-text">
           No compartiremos tu correo con nadie
@@ -45,11 +51,18 @@
           type="password"
           class="form-control"
           id="exampleInputPassword1"
+          name="password"
+          [(ngModel)]="user.password"
         />
       </div>
       <div class="mb-3">
         <label for="name" class="form-label">Plan </label>
-        <select class="form-select mb-3" name="" id="">
+        <select
+          class="form-select mb-3"
+          name="plan"
+          id=""
+          [(ngModel)]="user.plan"
+        >
           <option disabled selected value="">Seleccione un Plan</option>
           <option value="star">Star</option>
           <option value="galaxy">Galaxy</option>
@@ -59,28 +72,34 @@
       <div class="mb-3">
         <label for="name" class="form-label">Titular de la Tarjeta </label>
         <input
-          type="email"
+          type="text"
           class="form-control"
           id="exampleInputEmail1"
           aria-describedby="emailHelp"
+          name="owner"
+          [(ngModel)]="user.owner"
         />
       </div>
       <div class="mb-3 col-8">
         <label for="name" class="form-label">Numero de Tarjeta </label>
         <input
-          type="email"
+          type="text"
           class="form-control"
           id="exampleInputEmail1"
           aria-describedby="emailHelp"
+          name="cardNum"
+          [(ngModel)]="user.cardNum"
         />
       </div>
       <div class="mb-3 col-4">
         <label for="name" class="form-label">CSV </label>
         <input
-          type="email"
+          type="text"
           class="form-control"
           id="exampleInputEmail1"
           aria-describedby="emailHelp"
+          name="csv"
+          [(ngModel)]="user.csv"
         />
       </div>
       <!-- <div class="mb-3 form-check">
@@ -89,8 +108,11 @@
           >No soy un robot</label
         >
       </div> -->
+
       <div class="d-flex flex-column justify-content-center align-items-center">
-        <button type="submit" class="btn btn-space">Iniciar Sesión</button>
+        <button type="submit" class="btn btn-space" (click)="Registeru()">
+          Iniciar Sesión
+        </button>
       </div>
     </form>
   </div>
