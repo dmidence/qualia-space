@@ -111,8 +111,16 @@
 
       <div class="d-flex flex-column justify-content-center align-items-center">
         <button type="submit" class="btn btn-space" (click)="Registeru()">
-          Iniciar Sesión
+          Registrar
         </button>
+      </div>
+      <div
+        class="mb-3 mt-3 d-flex flex-column justify-content-center align-items-center"
+      >
+        <span
+          >Ya tienes una cuenta?
+          <a [routerLink]="['/', 'login']">Inicia Sesión!</a></span
+        >
       </div>
     </form>
   </div>

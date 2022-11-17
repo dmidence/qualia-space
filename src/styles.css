@@ -41,3 +41,19 @@
 .cpointer {
   cursor: pointer;
 }
+
+.btn-spacelanding {
+  background-color: #62cdaf;
+  color: rgb(74, 71, 71);
+}
+.btn-spacelanding:hover {
+  background-color: #1e795f;
+  color: white;
+}
+
+.noStores-template {
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

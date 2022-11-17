@@ -1,1 +1,137 @@
-<p>homeenterprise works!</p>
+<app-landing-navbar></app-landing-navbar>
+<main class="bg-main-section">
+  <div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center">
+      <h2>Tiendas</h2>
+
+      <span class="d-flex align-items-center"
+        >Agregar Tienda &nbsp;<i
+          class="fa-solid fa-square-plus fa-3x cpointer"
+          data-toggle="modal"
+          data-target="#exampleModal"
+          (click)="setToCreate()"
+        ></i>
+      </span>
+    </div>
+    <div class="stores-template" *ngIf="stores.length > 0; else noStores">
+      <div class="row">
+        <ng-container *ngFor="let store of stores">
+          <div class="p-2 col-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{ store.name }}</h5>
+                <p class="card-text">{{ store.description }}</p>
+              </div>
+              <div class="d-flex justify-content-end p-3">
+                <button class="btn btn-danger" (click)="deleteStore(store._id)">
+                  <i class="fa-solid fa-xmark">&nbsp;</i> Eliminar
+                </button>
+                <button
+                  class="btn btn-success"
+                  (click)="setToEditStore(store)"
+                  data-toggle="modal"
+                  data-target="#exampleModal"
+                >
+                  <i class="fa-solid fa-edit">&nbsp;</i> Editar
+                </button>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <ng-template #noStores>
+      No hay tiendas creadas
+      <div class="noStores-template">
+        <i
+          class="fa-solid fa-square-plus fa-5x cpointer"
+          data-toggle="modal"
+          data-target="#exampleModal"
+          (click)="setToCreate()"
+        ></i>
+      </div>
+    </ng-template>
+  </div>
+</main>
+
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Crear Tienda</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Nombre</label>
+            <input
+              type="email"
+              class="form-control"
+              id="name"
+              name="name"
+              [(ngModel)]="newStore.name"
+              aria-describedby="emailHelp"
+              placeholder="Ingresa un nombre "
+            />
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Descripción</label>
+            <input
+              type="text"
+              class="form-control"
+              id="description"
+              name="description"
+              [(ngModel)]="newStore.description"
+              placeholder="Agrega una descripcion"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          *ngIf="modalType == 1"
+          type="button"
+          class="btn btn-primary"
+          (click)="createStore()"
+        >
+          Crear
+        </button>
+        <button
+          *ngIf="modalType == 2"
+          type="button"
+          class="btn btn-primary"
+          (click)="editStore()"
+        >
+          Actualizar
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-dismiss="modal"
+          #closeModalButton
+        >
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
