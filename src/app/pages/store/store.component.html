@@ -1,0 +1,120 @@
+<app-landing-navbar></app-landing-navbar>
+<main class="bg-main-section">
+  <div class="container py-4">
+    <div class="row">
+      <!-- {{ store | json }} -->
+      <div class="col-6">
+        <h2>
+          {{ store.name }}
+        </h2>
+        <p>{{ store.description }}</p>
+      </div>
+      <div class="col-6 text-right cpointer">
+        <i class="fa-solid fa-eye text-success"></i>Visualizar Pagina
+      </div>
+      <div class="col-12">
+        <div class="w-full text-right">
+          <div (click)="openCreateModal()" class="cpointer">
+            <i
+              class="fa-solid fa-circle-plus text-primary"
+              data-toggle="modal"
+              data-target="#exampleModal"
+            >
+            </i>
+            Agregar Pagina
+          </div>
+        </div>
+
+        <table class="table table-dark my-4">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nombre Pagina</th>
+              <th scope="col">Tipo</th>
+              <th scope="col">
+                <div
+                  class="w-full d-flex justify-content-around align-items-center"
+                >
+                  Opciones
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let template of storeTemplates; let i = index">
+              <th scope="row">{{ i }}</th>
+              <td>{{ template.name }}</td>
+              <td>{{ template.type }}</td>
+              <td>
+                <div
+                  class="w-full d-flex justify-content-around align-items-center"
+                >
+                  <i class="fa-solid fa-circle-minus text-danger cpointer"></i>
+                  <i class="fa-solid fa-paintbrush text-success cpointer"></i>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Modal -->
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Crear Tienda</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="">Nombre de la pagina</label>
+            <input type="text" name="name" id="name" class="form-control" />
+            <label for="">Nombre de la pagina</label>
+            <select name="type" id="type" class="form-control">
+              <option value="Inicio">Inicio</option>
+              <option value="Compras">Compras</option>
+              <option value="Historial">Historial</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button *ngIf="modalType == 1" type="button" class="btn btn-primary">
+          Crear
+        </button>
+        <button *ngIf="modalType == 2" type="button" class="btn btn-primary">
+          Actualizar
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-dismiss="modal"
+          #closeModalButton
+        >
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

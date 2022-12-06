@@ -1,6 +1,7 @@
 import { AlertsService } from './../../services/alerts.service';
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-homeenterprise',
@@ -22,7 +23,11 @@ export class HomeenterpriseComponent implements OnInit {
   @ViewChild('closeModalButton', { static: false }) closeModalButton: any;
 
   modalType = 1; //1 para crear 2 para actualizar 3 para ver
-  constructor(private http: UserService, private alert: AlertsService) {
+  constructor(
+    private http: UserService,
+    private alert: AlertsService,
+    private router: Router
+  ) {
     this.http.getStoresByUserId(this.userId).subscribe((res) => {
       this.stores = res;
     });
@@ -51,29 +56,32 @@ export class HomeenterpriseComponent implements OnInit {
 
   deleteStore(storeId: string) {
     this.alert
-      .errorAlert('Eliminar', 'Desea eliminar esta empresa?')
+      .OptionAlert('Eliminar', 'Desea eliminar esta empresa?')
       .then((resalert: any) => {
-        this.http.deletStore(storeId).subscribe(
-          (res: any) => {
-            this.alert
-              .successAlert(
-                'Tienda Eiminada',
-                'Ha eliminado la tienda exitosamente'
-              )
-              .then((resalert) => {
-                this.stores = this.stores.filter(
-                  (store: any) => store._id != storeId
-                );
-              });
-          },
-          (err: any) => {
-            this.alert.errorAlert(
-              'Error al Eliminar',
-              'No se pudo eliminar la tienda.'
-            );
-          }
-        );
-      });
+        if (resalert.isConfirmed) {
+          this.http.deletStore(storeId).subscribe(
+            (res: any) => {
+              this.alert
+                .successAlert(
+                  'Tienda Eiminada',
+                  'Ha eliminado la tienda exitosamente'
+                )
+                .then((resalert) => {
+                  this.stores = this.stores.filter(
+                    (store: any) => store._id != storeId
+                  );
+                });
+            },
+            (err: any) => {
+              this.alert.errorAlert(
+                'Error al Eliminar',
+                'No se pudo eliminar la tienda.'
+              );
+            }
+          );
+        }
+      })
+      .catch();
   }
 
   editStore() {
@@ -105,5 +113,10 @@ export class HomeenterpriseComponent implements OnInit {
   setToEditStore(store: any) {
     this.modalType = 2;
     this.newStore = { ...store };
+  }
+
+  setStore(store: any) {
+    this.router.navigateByUrl('/store');
+    localStorage.setItem('currentStore', JSON.stringify(store));
   }
 }

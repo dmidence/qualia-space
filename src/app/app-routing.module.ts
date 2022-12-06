@@ -7,7 +7,7 @@ import { RegisterUserComponent } from './pages/register-user/register-user.compo
 import { HomeuserComponent } from './pages/homeuser/homeuser.component';
 import { AuthGuard } from './guard/auth.guard';
 import { HomeenterpriseComponent } from './pages/homeenterprise/homeenterprise.component';
-
+import { StoreComponent } from './pages/store/store.component';
 const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'login', component: LoginComponent },
@@ -17,6 +17,11 @@ const routes: Routes = [
   {
     path: 'homee',
     component: HomeenterpriseComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'store',
+    component: StoreComponent,
     canActivate: [AuthGuard],
   },
 ];

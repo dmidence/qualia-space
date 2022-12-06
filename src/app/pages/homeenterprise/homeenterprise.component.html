@@ -16,24 +16,29 @@
     <div class="stores-template" *ngIf="stores.length > 0; else noStores">
       <div class="row">
         <ng-container *ngFor="let store of stores">
-          <div class="p-2 col-3">
+          <div class="p-2 col-3" (click)="setStore(store)">
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">{{ store.name }}</h5>
                 <p class="card-text">{{ store.description }}</p>
               </div>
               <div class="d-flex justify-content-end p-3">
-                <button class="btn btn-danger" (click)="deleteStore(store._id)">
-                  <i class="fa-solid fa-xmark">&nbsp;</i> Eliminar
-                </button>
-                <button
-                  class="btn btn-success"
-                  (click)="setToEditStore(store)"
-                  data-toggle="modal"
-                  data-target="#exampleModal"
-                >
-                  <i class="fa-solid fa-edit">&nbsp;</i> Editar
-                </button>
+                <div class="w-50 d-flex justify-content-around">
+                  <button
+                    class="btn btn-danger"
+                    (click)="deleteStore(store._id)"
+                  >
+                    <i class="fa-solid fa-xmark"></i>
+                  </button>
+                  <button
+                    class="btn btn-success"
+                    (click)="setToEditStore(store)"
+                    data-toggle="modal"
+                    data-target="#exampleModal"
+                  >
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -54,8 +59,6 @@
     </ng-template>
   </div>
 </main>
-
-<!-- Button trigger modal -->
 
 <!-- Modal -->
 <div
