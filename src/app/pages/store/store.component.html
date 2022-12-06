@@ -14,13 +14,13 @@
       </div>
       <div class="col-12">
         <div class="w-full text-right">
-          <div (click)="openCreateModal()" class="cpointer">
-            <i
-              class="fa-solid fa-circle-plus text-primary"
-              data-toggle="modal"
-              data-target="#exampleModal"
-            >
-            </i>
+          <div
+            (click)="openCreateModal()"
+            data-toggle="modal"
+            data-target="#exampleModal"
+            class="cpointer"
+          >
+            <i class="fa-solid fa-circle-plus text-primary"> </i>
             Agregar Pagina
           </div>
         </div>
@@ -42,15 +42,23 @@
           </thead>
           <tbody>
             <tr *ngFor="let template of storeTemplates; let i = index">
-              <th scope="row">{{ i }}</th>
+              <th scope="row">{{ i + 1 }}</th>
               <td>{{ template.name }}</td>
               <td>{{ template.type }}</td>
               <td>
                 <div
                   class="w-full d-flex justify-content-around align-items-center"
                 >
-                  <i class="fa-solid fa-circle-minus text-danger cpointer"></i>
-                  <i class="fa-solid fa-paintbrush text-success cpointer"></i>
+                  <i
+                    class="fa-solid fa-circle-minus text-danger cpointer"
+                    (click)="deleteTemplate(template)"
+                  ></i>
+                  <i
+                    class="fa-solid fa-paintbrush text-success cpointer"
+                    (click)="openUpdateModal(template)"
+                    data-toggle="modal"
+                    data-target="#exampleModal"
+                  ></i>
                 </div>
               </td>
             </tr>
@@ -72,7 +80,7 @@
   aria-labelledby="exampleModalLabel"
   aria-hidden="true"
 >
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Crear Tienda</h5>
@@ -86,25 +94,40 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
-          <div class="form-group">
+        <form class="row">
+          <div class="form-group col-6">
             <label for="">Nombre de la pagina</label>
-            <input type="text" name="name" id="name" class="form-control" />
-            <label for="">Nombre de la pagina</label>
-            <select name="type" id="type" class="form-control">
+            <input
+              type="text"
+              name="name"
+              id="name"
+              class="form-control"
+              [(ngModel)]="template.name"
+            />
+          </div>
+          <div class="form-group col-6">
+            <label for="">Tipo de la pagina</label>
+            <select
+              name="type"
+              id="type"
+              class="form-control"
+              [(ngModel)]="template.type"
+            >
+              <option value="" selected disabled>Seleccionar</option>
               <option value="Inicio">Inicio</option>
               <option value="Compras">Compras</option>
               <option value="Historial">Historial</option>
             </select>
           </div>
         </form>
-        <div class="NgxEditor__Wrapper">
+        <div class="NgxEditor__Wrapper" style="height: 50vh">
           <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
           <ngx-editor
             [editor]="editor"
-            [(ngModel)]="html"
+            [(ngModel)]="template.html"
             [disabled]="false"
             [placeholder]="'Type here...'"
+            style="height: 50vh"
           ></ngx-editor>
         </div>
       </div>
@@ -117,7 +140,12 @@
         >
           Crear
         </button>
-        <button *ngIf="modalType == 2" type="button" class="btn btn-primary">
+        <button
+          *ngIf="modalType == 2"
+          type="button"
+          class="btn btn-primary"
+          (click)="updateTemplate()"
+        >
           Actualizar
         </button>
         <button

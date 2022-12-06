@@ -81,4 +81,34 @@ export class UserService {
       this.httpOptions
     );
   }
+  //Templates
+  getTemplatesByStoreId(storeId: string) {
+    return this.http.get(
+      this.API_Url + '/templates/store/' + storeId,
+      this.httpOptions
+    );
+  }
+
+  postTemplate(template: any) {
+    return this.http.post(
+      this.API_Url + '/templates/',
+      template,
+      this.httpOptions
+    );
+  }
+
+  deleteTemplate(templateId: string) {
+    return this.http.delete<any[]>(
+      this.API_Url + '/templates' + `/${templateId}`,
+      this.httpOptions
+    );
+  }
+
+  updateTemplate(template: any) {
+    return this.http.put<any[]>(
+      this.API_Url + '/templates' + `/${template._id}`,
+      template,
+      this.httpOptions
+    );
+  }
 }
