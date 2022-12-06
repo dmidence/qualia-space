@@ -10,7 +10,9 @@
         <p>{{ store.description }}</p>
       </div>
       <div class="col-6 text-right cpointer">
-        <i class="fa-solid fa-eye text-success"></i>Visualizar Pagina
+        <a [routerLink]="['/', 'storepages', store._id]">
+          <i class="fa-solid fa-eye text-success"></i>Visualizar Pagina
+        </a>
       </div>
       <div class="col-12">
         <div class="w-full text-right">

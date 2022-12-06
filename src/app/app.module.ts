@@ -1,3 +1,4 @@
+import { SafehtmlPipe } from './pipes/safehtml.pipe';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
@@ -15,6 +16,8 @@ import { RegisterEnterpriseComponent } from './pages/register-enterprise/registe
 import { HomeuserComponent } from './pages/homeuser/homeuser.component';
 import { HomeenterpriseComponent } from './pages/homeenterprise/homeenterprise.component';
 import { StoreComponent } from './pages/store/store.component';
+import { PreviewComponent } from './components/preview/preview.component';
+import { SafeHtml } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,8 @@ import { StoreComponent } from './pages/store/store.component';
     HomeuserComponent,
     HomeenterpriseComponent,
     StoreComponent,
+    PreviewComponent,
+    SafehtmlPipe,
   ],
   imports: [
     BrowserModule,

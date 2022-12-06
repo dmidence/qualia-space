@@ -1,3 +1,4 @@
+import { PreviewComponent } from './components/preview/preview.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LandingComponent } from './pages/landing/landing.component';
@@ -23,6 +24,10 @@ const routes: Routes = [
     path: 'store',
     component: StoreComponent,
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'storepages/:storeId',
+    component: PreviewComponent,
   },
 ];
 
