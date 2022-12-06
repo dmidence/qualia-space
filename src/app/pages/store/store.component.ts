@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Editor } from 'ngx-editor';
 
 @Component({
   selector: 'app-store',
   templateUrl: './store.component.html',
   styleUrls: ['./store.component.css'],
 })
-export class StoreComponent implements OnInit {
+export class StoreComponent implements OnInit, OnDestroy {
   store: any;
 
   storeTemplates = [
@@ -17,13 +18,25 @@ export class StoreComponent implements OnInit {
 
   modalType = 1;
 
+  editor: Editor = new Editor();
+  html: string = '';
+
   constructor() {
     this.store = JSON.parse(localStorage.getItem('currentStore') || '');
   }
 
   ngOnInit(): void {}
 
+  ngOnDestroy(): void {
+    this.editor.destroy();
+  }
+
   openCreateModal() {
     this.modalType = 1;
+  }
+
+  createTemplate() {
+    console.log(this.editor);
+    console.log(this.html);
   }
 }
