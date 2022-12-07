@@ -1,14 +1,24 @@
 import { AlertsService } from './../../services/alerts.service';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  AfterViewInit,
+} from '@angular/core';
 import { Editor } from 'ngx-editor';
 import { UserService } from 'src/app/services/user.service';
+import * as ace from 'ace-builds';
 
 @Component({
   selector: 'app-store',
   templateUrl: './store.component.html',
   styleUrls: ['./store.component.css'],
 })
-export class StoreComponent implements OnInit, OnDestroy {
+export class StoreComponent implements OnInit, OnDestroy, AfterViewInit {
+  @ViewChild('editor2') private editor2: ElementRef<HTMLElement>;
+
   store: any;
 
   storeTemplates: any[] = [];
@@ -25,6 +35,7 @@ export class StoreComponent implements OnInit, OnDestroy {
     css: '',
   };
 
+  aceEditor: any;
   constructor(private http: UserService, private alert: AlertsService) {
     this.store = JSON.parse(localStorage.getItem('currentStore') || '');
     this.template.storeId = this.store._id;
@@ -37,7 +48,16 @@ export class StoreComponent implements OnInit, OnDestroy {
       console.log(this.storeTemplates);
     });
   }
-
+  ngAfterViewInit(): void {
+    ace.config.set('fontSize', '14px');
+    ace.config.set(
+      'basePath',
+      'https://unpkg.com/ace-builds@1.4.12/src-noconflict'
+    );
+    this.aceEditor = ace.edit(this.editor2.nativeElement);
+    this.aceEditor.setTheme('ace/theme/twilight');
+    this.aceEditor.session.setMode('ace/mode/html');
+  }
   ngOnDestroy(): void {
     this.editor.destroy();
   }
@@ -49,6 +69,12 @@ export class StoreComponent implements OnInit, OnDestroy {
   openUpdateModal(template: any) {
     this.modalType = 2;
     this.template = { ...template };
+  }
+
+  openUpdateModal2(template: any) {
+    this.modalType = 3;
+    this.template = { ...template };
+    this.aceEditor.session.setValue(template.html);
   }
 
   createTemplate() {
@@ -70,6 +96,9 @@ export class StoreComponent implements OnInit, OnDestroy {
   }
 
   updateTemplate() {
+    if ((this.modalType = 3)) {
+      this.template.html = this.aceEditor.getValue();
+    }
     this.http.updateTemplate(this.template).subscribe(
       (res) => {
         this.alert
