@@ -6,22 +6,40 @@
         src="../../../../assets/img/logo.png"
         alt=""
       />
-      Qualia Space</a
+      <ng-container
+        *ngIf="currentUser.logged && !!currentUser.enterprise == true"
+      >
+        {{ currentUser.enterprise }}
+      </ng-container>
+      <ng-container
+        *ngIf="currentUser.logged && !!currentUser.enterprise == false"
+      >
+        QualiaSpace
+      </ng-container>
+      <ng-container *ngIf="currentUser.logged == false">
+        QualiaSpace
+      </ng-container>
+    </a>
+    <div
+      class="d-flex"
+      role="search"
+      *ngIf="!currentUser.logged; else loggedTemplate"
     >
-    <div class="d-flex" role="search">
-      <img src="" alt="" />
-      <a class="ps-2 nav-item-custom" [routerLink]="['/', 'registere']"
+      <a class="pl-2 nav-item-custom" [routerLink]="['/', 'registere']"
         >Registrar Empresa</a
       >
       <a
-        class="ps-2 nav-item-custom"
+        class="pl-2 nav-item-custom"
         href="pages/register-user/register-user.html"
         [routerLink]="['/', 'registeru']"
         >Registro</a
       >
-      <a class="ps-2 nav-item-custom" [routerLink]="['/', 'login']"
+      <a class="pl-2 nav-item-custom" [routerLink]="['/', 'login']"
         >Inicio de Sesión</a
       >
     </div>
+    <ng-template #loggedTemplate>
+      <a class="pl-2 nav-item-custom" (click)="logout()">Cerrar Sesión</a>
+    </ng-template>
   </div>
 </nav>

@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class UserService {
-  API_Url_Users = 'http://127.0.0.1:8888/users';
+  API_Url = 'http://127.0.0.1:8888';
   //HTTPOptions
   httpOptions = {
     headers: new HttpHeaders({
@@ -17,42 +17,97 @@ export class UserService {
 
   login(user: any) {
     return this.http.post(
-      this.API_Url_Users + '/login',
+      this.API_Url + '/users/login',
       user,
       this.httpOptions
     );
   }
   register(user: any) {
     return this.http.post(
-      this.API_Url_Users + '/register',
+      this.API_Url + '/users/register',
       user,
       this.httpOptions
     );
   }
 
   getUsers() {
-    return this.http.get<any[]>(this.API_Url_Users, this.httpOptions);
+    return this.http.get<any[]>(this.API_Url + '/users', this.httpOptions);
   }
 
   getUser(userId: any) {
-    console.log(this.API_Url_Users + `/${userId}`);
     return this.http.get<any[]>(
-      this.API_Url_Users + `/${userId}`,
+      this.API_Url + '/users' + `/${userId}`,
       this.httpOptions
     );
   }
 
   deleteUser(userId: any) {
     return this.http.delete<any[]>(
-      this.API_Url_Users + `/${userId}`,
+      this.API_Url + '/users' + `/${userId}`,
       this.httpOptions
     );
   }
 
   putUser(userId: any, user: any) {
     return this.http.put<any[]>(
-      this.API_Url_Users + `/${userId}`,
+      this.API_Url + '/users' + `/${userId}`,
       JSON.stringify(user),
+      this.httpOptions
+    );
+  }
+  //Stores
+  getStoresByUserId(userId: string) {
+    return this.http.get(
+      this.API_Url + '/stores/userId/' + userId,
+      this.httpOptions
+    );
+  }
+
+  postStore(store: any) {
+    return this.http.post(this.API_Url + '/stores/', store, this.httpOptions);
+  }
+
+  deletStore(storeId: string) {
+    return this.http.delete<any[]>(
+      this.API_Url + '/stores' + `/${storeId}`,
+      this.httpOptions
+    );
+  }
+
+  updateStore(store: any) {
+    return this.http.put<any[]>(
+      this.API_Url + '/stores' + `/${store._id}`,
+      store,
+      this.httpOptions
+    );
+  }
+  //Templates
+  getTemplatesByStoreId(storeId: string) {
+    return this.http.get(
+      this.API_Url + '/templates/store/' + storeId,
+      this.httpOptions
+    );
+  }
+
+  postTemplate(template: any) {
+    return this.http.post(
+      this.API_Url + '/templates/',
+      template,
+      this.httpOptions
+    );
+  }
+
+  deleteTemplate(templateId: string) {
+    return this.http.delete<any[]>(
+      this.API_Url + '/templates' + `/${templateId}`,
+      this.httpOptions
+    );
+  }
+
+  updateTemplate(template: any) {
+    return this.http.put<any[]>(
+      this.API_Url + '/templates' + `/${template._id}`,
+      template,
       this.httpOptions
     );
   }

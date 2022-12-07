@@ -1,3 +1,4 @@
+import { PreviewComponent } from './components/preview/preview.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LandingComponent } from './pages/landing/landing.component';
@@ -7,7 +8,7 @@ import { RegisterUserComponent } from './pages/register-user/register-user.compo
 import { HomeuserComponent } from './pages/homeuser/homeuser.component';
 import { AuthGuard } from './guard/auth.guard';
 import { HomeenterpriseComponent } from './pages/homeenterprise/homeenterprise.component';
-
+import { StoreComponent } from './pages/store/store.component';
 const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'login', component: LoginComponent },
@@ -18,6 +19,15 @@ const routes: Routes = [
     path: 'homee',
     component: HomeenterpriseComponent,
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'store',
+    component: StoreComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'storepages/:storeId',
+    component: PreviewComponent,
   },
 ];
 

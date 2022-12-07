@@ -9,7 +9,7 @@
     </div>
 
     <form class="w-100 row m-0 p-0">
-      <div class="mb-3 col-6">
+      <div class="col-6 px-2 mb-3">
         <label for="firstname" class="form-label">Nombre</label>
         <input
           aria-describedby="emailHelp"
@@ -20,7 +20,8 @@
           [(ngModel)]="user.first_name"
         />
       </div>
-      <div class="mb-3 col-6">
+
+      <div class="col-6 px-2 mb-3">
         <label for="name" class="form-label">Apellido </label>
         <input
           type="text"
@@ -31,7 +32,7 @@
           [(ngModel)]="user.last_name"
         />
       </div>
-      <div class="mb-3">
+      <div class="col-12 px-2 mb-3">
         <label for="exampleInputEmail1" class="form-label">Correo </label>
         <input
           aria-describedby="emailHelp"
@@ -45,7 +46,7 @@
           No compartiremos tu correo con nadie
         </div> -->
       </div>
-      <div class="mb-3">
+      <div class="col-12 px-2 mb-3">
         <label for="exampleInputPassword1" class="form-label">Contraseña</label>
         <input
           type="password"
@@ -55,10 +56,10 @@
           [(ngModel)]="user.password"
         />
       </div>
-      <div class="mb-3">
+      <div class="col-12 px-2 mb-3">
         <label for="name" class="form-label">Plan </label>
         <select
-          class="form-select mb-3"
+          class="form-control mb-3"
           name="plan"
           id=""
           [(ngModel)]="user.plan"
@@ -69,7 +70,7 @@
           <option value="universe">Universe</option>
         </select>
       </div>
-      <div class="mb-3">
+      <div class="mb-3 col-12">
         <label for="name" class="form-label">Titular de la Tarjeta </label>
         <input
           type="text"
@@ -109,10 +110,20 @@
         >
       </div> -->
 
-      <div class="d-flex flex-column justify-content-center align-items-center">
+      <div
+        class="d-flex flex-column justify-content-center align-items-center w-100"
+      >
         <button type="submit" class="btn btn-space" (click)="Registeru()">
-          Iniciar Sesión
+          Registrar
         </button>
+      </div>
+      <div
+        class="mb-3 mt-3 d-flex flex-column justify-content-center align-items-center w-100"
+      >
+        <span
+          >Ya tienes una cuenta?
+          <a [routerLink]="['/', 'login']">Inicia Sesión!</a></span
+        >
       </div>
     </form>
   </div>

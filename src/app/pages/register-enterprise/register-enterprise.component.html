@@ -9,7 +9,7 @@
     </div>
 
     <form class="w-100 row m-0 p-0">
-      <div class="mb-3">
+      <div class="mb-3 px-2 col-12">
         <label for="firstname" class="form-label">Nombre de la Empresa</label>
         <input
           type="email"
@@ -21,7 +21,7 @@
         />
       </div>
 
-      <div class="mb-3 col-6">
+      <div class="mb-3 px-2 col-12">
         <label for="firstname" class="form-label">Nombre del Propietario</label>
         <input
           aria-describedby="emailHelp"
@@ -32,7 +32,7 @@
           [(ngModel)]="user.first_name"
         />
       </div>
-      <div class="mb-3 col-6">
+      <div class="mb-3 px-2 col-12">
         <label for="name" class="form-label">Apellido del Propietario </label>
         <input
           type="text"
@@ -43,7 +43,7 @@
           [(ngModel)]="user.last_name"
         />
       </div>
-      <div class="mb-3">
+      <div class="mb-3 px-2 col-12">
         <label for="exampleInputEmail1" class="form-label">Correo </label>
         <input
           aria-describedby="emailHelp"
@@ -57,7 +57,7 @@
             No compartiremos tu correo con nadie
           </div> -->
       </div>
-      <div class="mb-3">
+      <div class="mb-3 px-2 col-12">
         <label for="exampleInputPassword1" class="form-label">Contraseña</label>
         <input
           type="password"
@@ -67,10 +67,10 @@
           [(ngModel)]="user.password"
         />
       </div>
-      <div class="mb-3">
+      <div class="mb-3 px-2 col-12">
         <label for="name" class="form-label">Plan </label>
         <select
-          class="form-select mb-3"
+          class="form-control mb-3 px-2"
           name="plan"
           id=""
           [(ngModel)]="user.plan"
@@ -81,7 +81,7 @@
           <option value="universe">Universe</option>
         </select>
       </div>
-      <div class="mb-3">
+      <div class="mb-3 px-2 col-12">
         <label for="name" class="form-label">Titular de la Tarjeta </label>
         <input
           type="text"
@@ -92,7 +92,7 @@
           [(ngModel)]="user.owner"
         />
       </div>
-      <div class="mb-3 col-8">
+      <div class="mb-3 px-2 col-8">
         <label for="name" class="form-label">Numero de Tarjeta </label>
         <input
           type="text"
@@ -103,7 +103,7 @@
           [(ngModel)]="user.cardNum"
         />
       </div>
-      <div class="mb-3 col-4">
+      <div class="mb-3 px-2 col-4">
         <label for="name" class="form-label">CSV </label>
         <input
           type="text"
@@ -114,16 +114,26 @@
           [(ngModel)]="user.csv"
         />
       </div>
-      <!-- <div class="mb-3 form-check">
+      <!-- <div class="mb-3 px-2 form-check">
         <input type="checkbox" class="form-check-input" id="exampleCheck1" />
         <label class="form-check-label" for="exampleCheck1"
           >No soy un robot</label
         >
       </div> -->
-      <div class="d-flex flex-column justify-content-center align-items-center">
+      <div
+        class="d-flex flex-column justify-content-center align-items-center w-100"
+      >
         <button type="submit" class="btn btn-space" (click)="Registere()">
-          Iniciar Sesión
+          Registrar
         </button>
+      </div>
+      <div
+        class="mb-3 px-2 mt-3 d-flex flex-column justify-content-center align-items-center w-100"
+      >
+        <span
+          >Ya tienes una cuenta?
+          <a [routerLink]="['/', 'login']">Inicia Sesión!</a></span
+        >
       </div>
     </form>
   </div>

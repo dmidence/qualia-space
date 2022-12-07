@@ -20,3 +20,16 @@
 .bg-section3 {
   background-color: rgb(0, 0, 0);
 }
+.img-card-landing {
+  width: 100%;
+  max-height: 300px;
+  height: 300px;
+  overflow: hidden;
+  object-fit: cover;
+}
+.img-scale {
+  transition: all 0.3s;
+}
+.img-scale:hover {
+  transform: scale(1.1);
+}

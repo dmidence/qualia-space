@@ -19,9 +19,6 @@
           name="email"
           [(ngModel)]="user.email"
         />
-        <div id="emailHelp" class="form-text">
-          No compartiremos tu correo con nadie
-        </div>
       </div>
       <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">Contraseña</label>
@@ -43,6 +40,17 @@
         <button type="submit" class="btn btn-space" (click)="Login()">
           Iniciar Sesión
         </button>
+      </div>
+      <div
+        class="mb-3 mt-3 d-flex flex-column justify-content-center align-items-center"
+      >
+        <span
+          >Aún no tienes una cuenta?
+          <a [routerLink]="['/', 'registeru']">Registrate!</a></span
+        >
+        <span>
+          ó <a [routerLink]="['/', 'registere']">Registra una Empresa!</a></span
+        >
       </div>
     </form>
   </div>

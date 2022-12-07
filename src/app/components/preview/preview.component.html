@@ -1,0 +1,57 @@
+<ng-container *ngIf="shareds">
+  <div [innerHTML]="shareds.htmlH | safehtml"></div>
+</ng-container>
+<div class="col-md-12">
+  <ng-container *ngIf="pages" class="alert-danger" class="text-center">
+    <ng-container *ngFor="let page of pages; let i = index">
+      <a class="btn btn-link" (click)="changePage(i)">{{ page.name }}</a>
+    </ng-container>
+  </ng-container>
+</div>
+<ng-container *ngIf="!html">
+  <h1>No tiene una pagina principal configurada</h1>
+</ng-container>
+<ng-container *ngIf="html">
+  <div [innerHTML]="html | safehtml"></div>
+  <!-- <ng-container *ngIf="isProductTemp">
+    <div class="row center">
+      <div class="col-md-12 tex-center">
+        <h2 class="center">Productos</h2>
+      </div>
+      <ng-container *ngIf="isProductTemp">
+        <ng-container *ngFor="let product of products">
+          <div
+            class="card m-2 col-md-4 col-lg-3 col-xl-3 col-sm-12 col-xs-12 p-0 border"
+            style="width: 18rem"
+          >
+            <img
+              class="card-img-top"
+              src="http://127.0.0.1:8888/{{ product.imgRoute }}"
+              height="250px"
+              width="100%"
+              alt="Card image cap"
+            />
+            <div class="card-body">
+              <h5 class="card-title p-0 m-0">{{ product.productName }}</h5>
+              <p class="card-text p-0 m-0">
+                {{ product.productDesc }}
+                <strong>L{{ product.price | number }}</strong>
+              </p>
+
+              <a
+                [routerLink]="['/products', product['_id']]"
+                class="btn btn-warning m-1 center form-control"
+                >Comprar</a
+              >
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+  </ng-container> -->
+
+  <div [innerHTML]="html2 | safehtml"></div>
+</ng-container>
+<ng-container *ngIf="shareds">
+  <!-- <div [innerHTML]="shareds.htmlF | safehtml"></div> -->
+</ng-container>

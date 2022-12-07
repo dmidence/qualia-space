@@ -1,7 +1,9 @@
+import { SafehtmlPipe } from './pipes/safehtml.pipe';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxEditorModule } from 'ngx-editor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +15,9 @@ import { RegisterUserComponent } from './pages/register-user/register-user.compo
 import { RegisterEnterpriseComponent } from './pages/register-enterprise/register-enterprise.component';
 import { HomeuserComponent } from './pages/homeuser/homeuser.component';
 import { HomeenterpriseComponent } from './pages/homeenterprise/homeenterprise.component';
+import { StoreComponent } from './pages/store/store.component';
+import { PreviewComponent } from './components/preview/preview.component';
+import { SafeHtml } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -25,8 +30,17 @@ import { HomeenterpriseComponent } from './pages/homeenterprise/homeenterprise.c
     RegisterEnterpriseComponent,
     HomeuserComponent,
     HomeenterpriseComponent,
+    StoreComponent,
+    PreviewComponent,
+    SafehtmlPipe,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    NgxEditorModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
