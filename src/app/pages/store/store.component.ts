@@ -18,6 +18,7 @@ import * as ace from 'ace-builds';
 })
 export class StoreComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('editor2') private editor2: ElementRef<HTMLElement>;
+  @ViewChild('editor3') private editor3: ElementRef<HTMLElement>;
 
   store: any;
 
@@ -36,6 +37,7 @@ export class StoreComponent implements OnInit, OnDestroy, AfterViewInit {
   };
 
   aceEditor: any;
+  aceEditorCss: any;
   constructor(private http: UserService, private alert: AlertsService) {
     this.store = JSON.parse(localStorage.getItem('currentStore') || '');
     this.template.storeId = this.store._id;
@@ -57,6 +59,9 @@ export class StoreComponent implements OnInit, OnDestroy, AfterViewInit {
     this.aceEditor = ace.edit(this.editor2.nativeElement);
     this.aceEditor.setTheme('ace/theme/twilight');
     this.aceEditor.session.setMode('ace/mode/html');
+    this.aceEditorCss = ace.edit(this.editor3.nativeElement);
+    this.aceEditorCss.setTheme('ace/theme/twilight');
+    this.aceEditorCss.session.setMode('ace/mode/css');
   }
   ngOnDestroy(): void {
     this.editor.destroy();
@@ -69,12 +74,15 @@ export class StoreComponent implements OnInit, OnDestroy, AfterViewInit {
   openUpdateModal(template: any) {
     this.modalType = 2;
     this.template = { ...template };
+    this.template.html = template.html;
+    console.log(template);
   }
 
   openUpdateModal2(template: any) {
     this.modalType = 3;
     this.template = { ...template };
     this.aceEditor.session.setValue(template.html);
+    this.aceEditorCss.session.setValue(template.css);
   }
 
   createTemplate() {
@@ -98,6 +106,7 @@ export class StoreComponent implements OnInit, OnDestroy, AfterViewInit {
   updateTemplate() {
     if ((this.modalType = 3)) {
       this.template.html = this.aceEditor.getValue();
+      this.template.css = this.aceEditorCss.getValue();
     }
     this.http.updateTemplate(this.template).subscribe(
       (res) => {

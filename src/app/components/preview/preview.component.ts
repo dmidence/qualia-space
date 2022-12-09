@@ -43,10 +43,12 @@ export class PreviewComponent implements OnInit {
       this.html =
         `<head><style>${this.pages[i].css}</style></head>` + this.pages[i].html;
       this.html2 = '';
+      console.log('this.pages[i].html');
+      console.log(this.pages[i].html);
+
+      console.log('this.pages[i].css');
+      console.log(this.pages[i].css);
       // this.isProductTemp = false;
     }
-    // console.log(this.products);
-    //console.log(this.html)
-    //console.log(this.html2)
   }
 }

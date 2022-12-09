@@ -16,7 +16,7 @@
     <div class="stores-template" *ngIf="stores.length > 0; else noStores">
       <div class="row">
         <ng-container *ngFor="let store of stores">
-          <div class="p-2 col-3" (click)="setStore(store)">
+          <div class="p-2 col-3 cpointer" (click)="setStore(store)">
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">{{ store.name }}</h5>
