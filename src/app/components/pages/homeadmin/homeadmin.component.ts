@@ -4,11 +4,11 @@ import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-homeuser',
-  templateUrl: './homeuser.component.html',
-  styleUrls: ['./homeuser.component.css'],
+  selector: 'app-homeadmin',
+  templateUrl: './homeadmin.component.html',
+  styleUrls: ['./homeadmin.component.css'],
 })
-export class HomeuserComponent implements OnInit {
+export class HomeadminComponent implements OnInit {
   allstores: any[];
   constructor(
     private http: UserService,
@@ -16,14 +16,9 @@ export class HomeuserComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {
-    this.getAllStores();
-  }
+  ngOnInit(): void {}
 
   getAllStores() {
-    this.http.getAllStores().subscribe((res: any) => {
-      this.allstores = res;
-      console.log(this.allstores);
-    });
+    console.log(this.allstores);
   }
 }

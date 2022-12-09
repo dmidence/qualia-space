@@ -20,6 +20,7 @@ import { HomeenterpriseComponent } from './pages/homeenterprise/homeenterprise.c
 import { StoreComponent } from './pages/store/store.component';
 import { PreviewComponent } from './components/preview/preview.component';
 import { SafeHtml } from '@angular/platform-browser';
+import { HomeadminComponent } from './components/pages/homeadmin/homeadmin.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { SafeHtml } from '@angular/platform-browser';
     StoreComponent,
     PreviewComponent,
     SafehtmlPipe,
+    HomeadminComponent,
   ],
   imports: [
     BrowserModule,

@@ -56,6 +56,9 @@ export class UserService {
     );
   }
   //Stores
+  getAllStores() {
+    return this.http.get(this.API_Url + '/stores/allstores/', this.httpOptions);
+  }
   getStoresByUserId(userId: string) {
     return this.http.get(
       this.API_Url + '/stores/userId/' + userId,

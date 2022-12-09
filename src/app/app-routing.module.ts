@@ -9,11 +9,13 @@ import { HomeuserComponent } from './pages/homeuser/homeuser.component';
 import { AuthGuard } from './guard/auth.guard';
 import { HomeenterpriseComponent } from './pages/homeenterprise/homeenterprise.component';
 import { StoreComponent } from './pages/store/store.component';
+import { HomeadminComponent } from './components/pages/homeadmin/homeadmin.component';
 const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'login', component: LoginComponent },
   { path: 'registeru', component: RegisterUserComponent },
   { path: 'registere', component: RegisterEnterpriseComponent },
+  { path: 'homea', component: HomeadminComponent, canActivate: [AuthGuard] },
   { path: 'homeu', component: HomeuserComponent, canActivate: [AuthGuard] },
   {
     path: 'homee',
