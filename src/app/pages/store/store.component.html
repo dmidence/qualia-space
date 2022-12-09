@@ -10,8 +10,8 @@
         <p>{{ store.description }}</p>
       </div>
       <div class="col-6 text-right cpointer">
-        <a [routerLink]="['/', 'storepages', store._id]">
-          <i class="fa-solid fa-eye text-success"></i>Visualizar Pagina
+        <a [routerLink]="['/', 'storepages', store._id]" target="_blank">
+          <i class="fa-solid fa-eye text-success"></i>Visualizar Paginas
         </a>
       </div>
       <div class="col-12">
@@ -125,6 +125,25 @@
               <option value="Inicio">Inicio</option>
               <option value="Compras">Compras</option>
               <option value="Historial">Historial</option>
+            </select>
+          </div>
+
+          <div *ngIf="modalType == 1" class="form-group col-12">
+            <label for="">Plantillas </label>
+            <select
+              name="htmlTemplate"
+              id="htmlTemplate"
+              class="form-control"
+              (change)="fillHtmlTemplates($event.target)"
+            >
+              <!-- [(ngModel)]="template.type" -->
+              <option value="" selected disabled>Seleccionar Plantilla</option>
+              <option
+                value="{{ htmltemplate.html }}"
+                *ngFor="let htmltemplate of storeHtmlTemplates; let i = index"
+              >
+                {{ htmltemplate.name }}
+              </option>
             </select>
           </div>
         </form>

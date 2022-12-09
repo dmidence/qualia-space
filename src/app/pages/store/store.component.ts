@@ -35,6 +35,7 @@ export class StoreComponent implements OnInit, OnDestroy, AfterViewInit {
     html: '',
     css: '',
   };
+  storeHtmlTemplates: any[] = [];
 
   toolbar: [
     ['bold', 'italic', 'underline', 'strike'], // toggled buttons
@@ -71,6 +72,10 @@ export class StoreComponent implements OnInit, OnDestroy, AfterViewInit {
     this.http.getTemplatesByStoreId(this.store._id).subscribe((res: any) => {
       this.storeTemplates = res;
       console.log(this.storeTemplates);
+    });
+    this.http.getHtmlTemplates().subscribe((res: any) => {
+      this.storeHtmlTemplates = res;
+      console.log(this.storeHtmlTemplates);
     });
   }
   ngAfterViewInit(): void {
@@ -182,5 +187,10 @@ export class StoreComponent implements OnInit, OnDestroy, AfterViewInit {
           );
         }
       });
+  }
+  fillHtmlTemplates(target: any) {
+    console.log(target.value);
+
+    this.content = target.value;
   }
 }
