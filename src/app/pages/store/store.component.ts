@@ -18,6 +18,7 @@ import * as ace from 'ace-builds';
 })
 export class StoreComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('editor2') private editor2: ElementRef<HTMLElement>;
+  @ViewChild('editor3') private editor3: ElementRef<HTMLElement>;
 
   store: any;
 
@@ -34,8 +35,33 @@ export class StoreComponent implements OnInit, OnDestroy, AfterViewInit {
     html: '',
     css: '',
   };
+  storeHtmlTemplates: any[] = [];
 
+  toolbar: [
+    ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+    ['blockquote', 'code-block'],
+
+    [{ header: 1 }, { header: 2 }], // custom button values
+    [{ list: 'ordered' }, { list: 'bullet' }],
+    [{ script: 'sub' }, { script: 'super' }], // superscript/subscript
+    [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
+    [{ direction: 'rtl' }], // text direction
+
+    [{ size: ['small', false, 'large', 'huge'] }], // custom dropdown
+    [{ header: [1, 2, 3, 4, 5, 6, false] }],
+
+    [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+    [{ font: [] }],
+    [{ align: [] }],
+
+    ['clean'], // remove formatting button
+
+    ['link', 'image', 'video'] // link and image, video
+  ];
+
+  content = '';
   aceEditor: any;
+  aceEditorCss: any;
   constructor(private http: UserService, private alert: AlertsService) {
     this.store = JSON.parse(localStorage.getItem('currentStore') || '');
     this.template.storeId = this.store._id;
@@ -47,6 +73,10 @@ export class StoreComponent implements OnInit, OnDestroy, AfterViewInit {
       this.storeTemplates = res;
       console.log(this.storeTemplates);
     });
+    this.http.getHtmlTemplates().subscribe((res: any) => {
+      this.storeHtmlTemplates = res;
+      console.log(this.storeHtmlTemplates);
+    });
   }
   ngAfterViewInit(): void {
     ace.config.set('fontSize', '14px');
@@ -57,6 +87,9 @@ export class StoreComponent implements OnInit, OnDestroy, AfterViewInit {
     this.aceEditor = ace.edit(this.editor2.nativeElement);
     this.aceEditor.setTheme('ace/theme/twilight');
     this.aceEditor.session.setMode('ace/mode/html');
+    this.aceEditorCss = ace.edit(this.editor3.nativeElement);
+    this.aceEditorCss.setTheme('ace/theme/twilight');
+    this.aceEditorCss.session.setMode('ace/mode/css');
   }
   ngOnDestroy(): void {
     this.editor.destroy();
@@ -64,20 +97,24 @@ export class StoreComponent implements OnInit, OnDestroy, AfterViewInit {
 
   openCreateModal() {
     this.modalType = 1;
+    this.content = '';
   }
 
   openUpdateModal(template: any) {
     this.modalType = 2;
     this.template = { ...template };
+    this.content = template.html;
   }
 
   openUpdateModal2(template: any) {
     this.modalType = 3;
     this.template = { ...template };
     this.aceEditor.session.setValue(template.html);
+    this.aceEditorCss.session.setValue(template.css);
   }
 
   createTemplate() {
+    this.template.html = this.content;
     this.http.postTemplate(this.template).subscribe(
       (res) => {
         this.alert
@@ -96,8 +133,11 @@ export class StoreComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   updateTemplate() {
-    if ((this.modalType = 3)) {
+    if (this.modalType == 3) {
       this.template.html = this.aceEditor.getValue();
+      this.template.css = this.aceEditorCss.getValue();
+    } else {
+      this.template.html = this.content;
     }
     this.http.updateTemplate(this.template).subscribe(
       (res) => {
@@ -147,5 +187,10 @@ export class StoreComponent implements OnInit, OnDestroy, AfterViewInit {
           );
         }
       });
+  }
+  fillHtmlTemplates(target: any) {
+    console.log(target.value);
+
+    this.content = target.value;
   }
 }

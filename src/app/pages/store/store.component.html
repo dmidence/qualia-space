@@ -10,8 +10,8 @@
         <p>{{ store.description }}</p>
       </div>
       <div class="col-6 text-right cpointer">
-        <a [routerLink]="['/', 'storepages', store._id]">
-          <i class="fa-solid fa-eye text-success"></i>Visualizar Pagina
+        <a [routerLink]="['/', 'storepages', store._id]" target="_blank">
+          <i class="fa-solid fa-eye text-success"></i>Visualizar Paginas
         </a>
       </div>
       <div class="col-12">
@@ -127,16 +127,40 @@
               <option value="Historial">Historial</option>
             </select>
           </div>
+
+          <div *ngIf="modalType == 1" class="form-group col-12">
+            <label for="">Plantillas </label>
+            <select
+              name="htmlTemplate"
+              id="htmlTemplate"
+              class="form-control"
+              (change)="fillHtmlTemplates($event.target)"
+            >
+              <!-- [(ngModel)]="template.type" -->
+              <option value="" selected disabled>Seleccionar Plantilla</option>
+              <option
+                value="{{ htmltemplate.html }}"
+                *ngFor="let htmltemplate of storeHtmlTemplates; let i = index"
+              >
+                {{ htmltemplate.name }}
+              </option>
+            </select>
+          </div>
         </form>
-        <div class="NgxEditor__Wrapper" style="height: 50vh">
+        <!-- <div class="NgxEditor__Wrapper" style="height: 50vh">
           <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
           <ngx-editor
             [editor]="editor"
+            [name]="'html'"
+            ngDefaultControl
             [(ngModel)]="template.html"
             [disabled]="false"
             [placeholder]="'Type here...'"
             style="height: 50vh"
           ></ngx-editor>
+        </div> -->
+        <div class="editor-div col-md-12">
+          <quill-editor [(ngModel)]="content"></quill-editor>
         </div>
       </div>
       <div class="modal-footer">
@@ -224,6 +248,12 @@
             #editor2
             style="width: 500px; height: 250px"
             [(ngModel)]="template.html"
+          ></div>
+          <div
+            class="app-ace-editor"
+            #editor3
+            style="width: 500px; height: 250px"
+            [(ngModel)]="template.css"
           ></div>
         </div>
       </div>

@@ -111,4 +111,34 @@ export class UserService {
       this.httpOptions
     );
   }
+  //Personalized Templates
+  getHtmlTemplates() {
+    return this.http.get(
+      this.API_Url + '/htmltemplate/store/',
+      this.httpOptions
+    );
+  }
+
+  postHtmlTemplate(template: any) {
+    return this.http.post(
+      this.API_Url + '/htmltemplate/',
+      template,
+      this.httpOptions
+    );
+  }
+
+  deleteHtmlTemplate(templateId: string) {
+    return this.http.delete<any[]>(
+      this.API_Url + '/htmltemplate' + `/${templateId}`,
+      this.httpOptions
+    );
+  }
+
+  updateHtmlTemplate(template: any) {
+    return this.http.put<any[]>(
+      this.API_Url + '/htmltemplate' + `/${template._id}`,
+      template,
+      this.httpOptions
+    );
+  }
 }
