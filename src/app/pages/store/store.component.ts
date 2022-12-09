@@ -36,6 +36,29 @@ export class StoreComponent implements OnInit, OnDestroy, AfterViewInit {
     css: '',
   };
 
+  toolbar: [
+    ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+    ['blockquote', 'code-block'],
+
+    [{ header: 1 }, { header: 2 }], // custom button values
+    [{ list: 'ordered' }, { list: 'bullet' }],
+    [{ script: 'sub' }, { script: 'super' }], // superscript/subscript
+    [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
+    [{ direction: 'rtl' }], // text direction
+
+    [{ size: ['small', false, 'large', 'huge'] }], // custom dropdown
+    [{ header: [1, 2, 3, 4, 5, 6, false] }],
+
+    [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+    [{ font: [] }],
+    [{ align: [] }],
+
+    ['clean'], // remove formatting button
+
+    ['link', 'image', 'video'] // link and image, video
+  ];
+
+  content = '';
   aceEditor: any;
   aceEditorCss: any;
   constructor(private http: UserService, private alert: AlertsService) {
@@ -69,13 +92,13 @@ export class StoreComponent implements OnInit, OnDestroy, AfterViewInit {
 
   openCreateModal() {
     this.modalType = 1;
+    this.content = '';
   }
 
   openUpdateModal(template: any) {
     this.modalType = 2;
     this.template = { ...template };
-    this.template.html = template.html;
-    console.log(template);
+    this.content = template.html;
   }
 
   openUpdateModal2(template: any) {
@@ -86,6 +109,7 @@ export class StoreComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   createTemplate() {
+    this.template.html = this.content;
     this.http.postTemplate(this.template).subscribe(
       (res) => {
         this.alert
@@ -104,9 +128,11 @@ export class StoreComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   updateTemplate() {
-    if ((this.modalType = 3)) {
+    if (this.modalType == 3) {
       this.template.html = this.aceEditor.getValue();
       this.template.css = this.aceEditorCss.getValue();
+    } else {
+      this.template.html = this.content;
     }
     this.http.updateTemplate(this.template).subscribe(
       (res) => {

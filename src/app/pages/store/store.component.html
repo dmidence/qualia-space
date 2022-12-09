@@ -128,7 +128,7 @@
             </select>
           </div>
         </form>
-        <div class="NgxEditor__Wrapper" style="height: 50vh">
+        <!-- <div class="NgxEditor__Wrapper" style="height: 50vh">
           <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
           <ngx-editor
             [editor]="editor"
@@ -139,6 +139,9 @@
             [placeholder]="'Type here...'"
             style="height: 50vh"
           ></ngx-editor>
+        </div> -->
+        <div class="editor-div col-md-12">
+          <quill-editor [(ngModel)]="content"></quill-editor>
         </div>
       </div>
       <div class="modal-footer">
