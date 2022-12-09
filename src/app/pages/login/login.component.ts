@@ -24,7 +24,9 @@ export class LoginComponent implements OnInit {
       next: (res: any) => {
         res.dataUser.logged = true;
         sessionStorage.setItem('qspaceuser', JSON.stringify(res));
-        if (res.dataUser.user_type == 'simple') {
+        if (res.dataUser.user_type == 'Admin') {
+          this.router.navigate(['/', 'homea']);
+        } else if (res.dataUser.user_type == 'simple') {
           this.router.navigate(['/', 'homeu']);
         } else {
           this.router.navigate(['/', 'homee']);
