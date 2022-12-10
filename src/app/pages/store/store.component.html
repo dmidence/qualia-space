@@ -10,7 +10,10 @@
         <p>{{ store.description }}</p>
       </div>
       <div class="col-6 text-right cpointer">
-        <a [routerLink]="['/', 'storepages', store._id]" target="_blank">
+        <a
+          [routerLink]="['/', 'storepages', store._id, userId]"
+          target="_blank"
+        >
           <i class="fa-solid fa-eye text-success"></i>Visualizar Paginas
         </a>
       </div>
@@ -76,6 +79,8 @@
     </div>
   </div>
 </main>
+
+<app-admin-products></app-admin-products>
 
 <!-- Modal -->
 
@@ -240,6 +245,14 @@
               <option value="Compras">Compras</option>
               <option value="Historial">Historial</option>
             </select>
+          </div>
+          <div class="col-12">
+            <button
+              class="btn btn-success float-right"
+              (click)="agregarProductos()"
+            >
+              Agregar Productos
+            </button>
           </div>
         </form>
         <div class="d-flex justify-content-around">

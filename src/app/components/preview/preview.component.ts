@@ -1,6 +1,7 @@
+import { AlertsService } from './../../services/alerts.service';
 import { UserService } from 'src/app/services/user.service';
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-preview',
   templateUrl: './preview.component.html',
@@ -12,22 +13,25 @@ export class PreviewComponent implements OnInit {
   tempManage: any;
   html: string = '';
   html2: string = '';
-  // isProductTemp:boolean=""
-  // products
+  userId: any;
+  products: any[];
   shareds: any;
+  currentProduct: any = {};
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private http: UserService
-  ) {}
+  constructor(private http: UserService, private alert: AlertsService) {}
 
   ngOnInit(): void {
+    this.userId = window.location.pathname.split('/')[3];
     this.http
       .getTemplatesByStoreId(window.location.pathname.split('/')[2])
       .subscribe((res) => {
         this.pages = res;
         this.changePage(0);
+      });
+    this.http
+      .getPoductsStore(window.location.pathname.split('/')[2])
+      .subscribe((res: any) => {
+        this.products = res;
       });
   }
 
@@ -50,5 +54,29 @@ export class PreviewComponent implements OnInit {
       console.log(this.pages[i].css);
       // this.isProductTemp = false;
     }
+  }
+
+  setCurrentProduct(product: any) {
+    this.currentProduct = product;
+  }
+
+  executeBuy() {
+    let data = {
+      userId: this.userId,
+      product: { ...this.currentProduct },
+    };
+    this.http.postBuyedProduct(data).subscribe(
+      (res) => {
+        this.alert.successAlert('Comprado', 'Producto comprado').then((res) => {
+          location.reload();
+        });
+      },
+      (err) => {
+        this.alert.errorAlert(
+          'Ocurrio un error',
+          'Ocurrio un error al comprar el producto'
+        );
+      }
+    );
   }
 }

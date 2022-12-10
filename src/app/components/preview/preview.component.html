@@ -1,11 +1,20 @@
 <ng-container *ngIf="shareds">
   <div [innerHTML]="shareds.htmlH | safehtml"></div>
 </ng-container>
-<div class="col-md-12">
-  <ng-container *ngIf="pages" class="alert-danger" class="text-center">
+<div class="col-md-12 previewHeader p-4">
+  <ng-container *ngIf="pages" class="c-pointer" class="text-center">
     <ng-container *ngFor="let page of pages; let i = index">
-      <a class="btn btn-link" (click)="changePage(i)">{{ page.name }}</a>
+      <a class="c-pointer text-white px-4" (click)="changePage(i)">{{
+        page.name
+      }}</a>
     </ng-container>
+    <a
+      class="c-pointer text-white px-4"
+      [routerLink]="['/', 'buys', userId]"
+      target="_blank"
+    >
+      Mis Compras
+    </a>
   </ng-container>
 </div>
 <ng-container *ngIf="!html">
@@ -13,45 +22,94 @@
 </ng-container>
 <ng-container *ngIf="html">
   <div [innerHTML]="html | safehtml"></div>
-  <!-- <ng-container *ngIf="isProductTemp">
-    <div class="row center">
-      <div class="col-md-12 tex-center">
-        <h2 class="center">Productos</h2>
-      </div>
-      <ng-container *ngIf="isProductTemp">
-        <ng-container *ngFor="let product of products">
-          <div
-            class="card m-2 col-md-4 col-lg-3 col-xl-3 col-sm-12 col-xs-12 p-0 border"
-            style="width: 18rem"
+  <div class="productsContainer">
+    <ng-container *ngFor="let product of products">
+      <div class="card m-2 p-0 border" style="width: 30%">
+        <img
+          class="card-img-top"
+          src="http://127.0.0.1:8888/{{ product.img }}"
+          height="250px"
+          width="100%"
+          alt="Card image cap"
+        />
+        <div class="card-body">
+          <h5 class="card-title p-0 m-0">{{ product.name }}</h5>
+          <p class="card-text p-0 m-0">
+            <strong>L{{ product.price | number }}</strong>
+          </p>
+
+          <button
+            class="btn btn-warning m-1 center form-control"
+            data-toggle="modal"
+            data-target="#exampleModalbuy"
+            (click)="setCurrentProduct(product)"
           >
-            <img
-              class="card-img-top"
-              src="http://127.0.0.1:8888/{{ product.imgRoute }}"
-              height="250px"
-              width="100%"
-              alt="Card image cap"
-            />
-            <div class="card-body">
-              <h5 class="card-title p-0 m-0">{{ product.productName }}</h5>
-              <p class="card-text p-0 m-0">
-                {{ product.productDesc }}
-                <strong>L{{ product.price | number }}</strong>
-              </p>
+            Comprar
+          </button>
+        </div>
+      </div>
 
-              <a
-                [routerLink]="['/products', product['_id']]"
-                class="btn btn-warning m-1 center form-control"
-                >Comprar</a
-              >
-            </div>
-          </div>
-        </ng-container>
-      </ng-container>
+      <div [innerHTML]="html2 | safehtml"></div>
+    </ng-container>
+  </div>
+
+  <ng-container *ngIf="shareds">
+    <!-- <div [innerHTML]="shareds.htmlF | safehtml"></div> -->
+  </ng-container>
+</ng-container>
+
+<div
+  class="modal fade"
+  id="exampleModalbuy"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Crear Tienda</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div
+        class="modal-body overflow-hidden pl-2"
+        *ngIf="!!currentProduct.name"
+      >
+        <img
+          class="card-img-top"
+          src="http://127.0.0.1:8888/{{ currentProduct.img }}"
+          height="250px"
+          width="100%"
+          alt="Card image cap"
+        />
+        <div class="card-body">
+          <h5 class="card-title p-0 m-0">{{ currentProduct.name }}</h5>
+          <p class="card-text p-0 m-0">
+            <strong>L{{ currentProduct.price | number }}</strong>
+          </p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="executeBuy()">
+          Comprar
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-dismiss="modal"
+          #closeModalButton
+        >
+          Cerrar
+        </button>
+      </div>
     </div>
-  </ng-container> -->
-
-  <div [innerHTML]="html2 | safehtml"></div>
-</ng-container>
-<ng-container *ngIf="shareds">
-  <!-- <div [innerHTML]="shareds.htmlF | safehtml"></div> -->
-</ng-container>
+  </div>
+</div>

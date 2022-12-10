@@ -10,11 +10,16 @@ import { Router } from '@angular/router';
 })
 export class HomeuserComponent implements OnInit {
   allstores: any[];
+  userId;
   constructor(
     private http: UserService,
     private alert: AlertsService,
     private router: Router
-  ) {}
+  ) {
+    this.userId = JSON.parse(
+      sessionStorage.getItem('qspaceuser') || '{"dataUser":{"logged":false}}'
+    ).dataUser._id;
+  }
 
   ngOnInit(): void {
     this.getAllStores();

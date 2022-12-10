@@ -1,0 +1,143 @@
+<div class="container pb-4">
+  <h2>Productos</h2>
+  <div class="row">
+    <div class="col-12">
+      <div class="w-full text-right">
+        <div
+          (click)="openCreateModal()"
+          data-toggle="modal"
+          data-target="#exampleModalProducts"
+          class="cpointer"
+        >
+          <i class="fa-solid fa-circle-plus text-primary"> </i>
+          Agregar Producto
+        </div>
+      </div>
+
+      <table class="table table-dark my-4">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre Producto</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">
+              <div
+                class="w-full d-flex justify-content-around align-items-center"
+              >
+                Opciones
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let template of storeProducts; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ template.name }}</td>
+            <td>{{ template.price }}</td>
+            <td>
+              <div
+                class="w-full d-flex justify-content-around align-items-center"
+              >
+                <i
+                  class="fa-solid fa-circle-minus text-danger cpointer"
+                  (click)="deleteTemplate(template)"
+                ></i>
+                <i
+                  class="fa-solid fa-paintbrush text-success cpointer"
+                  (click)="openUpdateModal(template)"
+                  data-toggle="modal"
+                  data-target="#exampleModalProducts"
+                ></i>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModalProducts"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Crear Product</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="row">
+          <div class="form-group col-6">
+            <label for="">Nombre del Producto</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              class="form-control"
+              [(ngModel)]="product.name"
+            />
+          </div>
+          <div class="form-group col-6">
+            <label for="">Precio del Producto</label>
+            <input
+              type="number"
+              name="price"
+              id="price"
+              class="form-control"
+              [(ngModel)]="product.price"
+            />
+          </div>
+          <div class="form-group col-6">
+            <label for="">Imagen del producto</label>
+            <input
+              type="file"
+              class="form-control"
+              id="customFile"
+              (change)="handleImage($event.target)"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          *ngIf="modalType == 1"
+          type="button"
+          class="btn btn-primary"
+          (click)="createTemplate()"
+        >
+          Crear
+        </button>
+        <button
+          *ngIf="modalType == 2"
+          type="button"
+          class="btn btn-primary"
+          (click)="updateTemplate()"
+        >
+          Actualizar
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-dismiss="modal"
+          #closeModalButton
+        >
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

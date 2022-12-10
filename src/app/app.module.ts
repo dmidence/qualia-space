@@ -23,6 +23,8 @@ import { SafeHtml } from '@angular/platform-browser';
 import { HomeadminComponent } from './components/pages/homeadmin/homeadmin.component';
 import { AdmintemplatesComponent } from './components/admintemplates/admintemplates.component';
 import { AdminstoresComponent } from './components/adminstores/adminstores.component';
+import { AdminProductsComponent } from './components/admin-products/admin-products.component';
+import { BuysComponent } from './components/buys/buys.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { AdminstoresComponent } from './components/adminstores/adminstores.compo
     HomeadminComponent,
     AdmintemplatesComponent,
     AdminstoresComponent,
+    AdminProductsComponent,
+    BuysComponent,
   ],
   imports: [
     BrowserModule,

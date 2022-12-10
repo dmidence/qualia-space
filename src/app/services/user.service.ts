@@ -13,6 +13,11 @@ export class UserService {
       'Content-Type': 'application/json',
     }),
   };
+  httpOptionsFormData = {
+    headers: new HttpHeaders({
+      'Content-Type': 'multipart/form-data; boundary=something',
+    }),
+  };
   constructor(private http: HttpClient) {}
 
   login(user: any) {
@@ -143,5 +148,41 @@ export class UserService {
       template,
       this.httpOptions
     );
+  }
+  //Productos
+  getPoductsStore(storeId: any) {
+    console.log('storeId', storeId);
+    return this.http.get(
+      this.API_Url + '/products/store/' + storeId,
+      this.httpOptions
+    );
+  }
+
+  postProduct(product: any) {
+    return this.http.post(this.API_Url + '/products/', product);
+  }
+
+  deleteProduct(templateId: string) {
+    return this.http.delete<any[]>(
+      this.API_Url + '/products/' + `${templateId}`,
+      this.httpOptions
+    );
+  }
+
+  updateProduct(template: any) {
+    return this.http.put<any[]>(
+      this.API_Url + '/products/' + `${template._id}`,
+      template
+    );
+  }
+  getBuyedsProducts(userId: any) {
+    return this.http.get(
+      this.API_Url + '/buys/userId/' + userId,
+      this.httpOptions
+    );
+  }
+
+  postBuyedProduct(product: any) {
+    return this.http.post(this.API_Url + '/buys', product);
   }
 }
