@@ -27,7 +27,7 @@ export class StoreComponent implements OnInit, OnDestroy, AfterViewInit {
   modalType = 1;
 
   editor: Editor = new Editor();
-
+  userId;
   template = {
     storeId: 0,
     name: '',
@@ -65,6 +65,9 @@ export class StoreComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(private http: UserService, private alert: AlertsService) {
     this.store = JSON.parse(localStorage.getItem('currentStore') || '');
     this.template.storeId = this.store._id;
+    this.userId = JSON.parse(
+      sessionStorage.getItem('qspaceuser') || '{"dataUser":{"logged":false}}'
+    ).dataUser._id;
   }
 
   ngOnInit(): void {
@@ -192,5 +195,16 @@ export class StoreComponent implements OnInit, OnDestroy, AfterViewInit {
     console.log(target.value);
 
     this.content = target.value;
+  }
+  agregarProductos() {
+    console.log(this.modalType);
+    console.log(this.content);
+    if (this.modalType == 1) {
+      this.content = this.content + '<products></products>';
+    } else {
+      this.aceEditor.session.setValue(
+        this.aceEditor.session.getValue() + '<products></products>'
+      );
+    }
   }
 }

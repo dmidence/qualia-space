@@ -65,3 +65,14 @@
   border: 2px solid #f8f9fa;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
+
+.card-img-top {
+  object-fit: contain;
+}
+
+.productsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}

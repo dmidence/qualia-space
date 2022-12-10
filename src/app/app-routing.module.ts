@@ -1,3 +1,4 @@
+import { BuysComponent } from './components/buys/buys.component';
 import { PreviewComponent } from './components/preview/preview.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -10,6 +11,7 @@ import { AuthGuard } from './guard/auth.guard';
 import { HomeenterpriseComponent } from './pages/homeenterprise/homeenterprise.component';
 import { StoreComponent } from './pages/store/store.component';
 import { HomeadminComponent } from './components/pages/homeadmin/homeadmin.component';
+
 const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'login', component: LoginComponent },
@@ -28,8 +30,12 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'storepages/:storeId',
+    path: 'storepages/:storeId/:userId',
     component: PreviewComponent,
+  },
+  {
+    path: 'buys/:userId',
+    component: BuysComponent,
   },
 ];
 

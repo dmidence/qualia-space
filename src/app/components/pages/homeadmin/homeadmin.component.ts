@@ -1,7 +1,15 @@
 import { AlertsService } from 'src/app/services/alerts.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+  AfterViewInit,
+} from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
+
+import * as ace from 'ace-builds';
 
 @Component({
   selector: 'app-homeadmin',
@@ -9,16 +17,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./homeadmin.component.css'],
 })
 export class HomeadminComponent implements OnInit {
-  allstores: any[];
-  constructor(
-    private http: UserService,
-    private alert: AlertsService,
-    private router: Router
-  ) {}
-
+  constructor() {}
   ngOnInit(): void {}
-
-  getAllStores() {
-    console.log(this.allstores);
-  }
 }

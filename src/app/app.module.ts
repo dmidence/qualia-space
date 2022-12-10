@@ -21,6 +21,10 @@ import { StoreComponent } from './pages/store/store.component';
 import { PreviewComponent } from './components/preview/preview.component';
 import { SafeHtml } from '@angular/platform-browser';
 import { HomeadminComponent } from './components/pages/homeadmin/homeadmin.component';
+import { AdmintemplatesComponent } from './components/admintemplates/admintemplates.component';
+import { AdminstoresComponent } from './components/adminstores/adminstores.component';
+import { AdminProductsComponent } from './components/admin-products/admin-products.component';
+import { BuysComponent } from './components/buys/buys.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +41,10 @@ import { HomeadminComponent } from './components/pages/homeadmin/homeadmin.compo
     PreviewComponent,
     SafehtmlPipe,
     HomeadminComponent,
+    AdmintemplatesComponent,
+    AdminstoresComponent,
+    AdminProductsComponent,
+    BuysComponent,
   ],
   imports: [
     BrowserModule,
