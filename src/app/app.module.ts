@@ -21,6 +21,8 @@ import { StoreComponent } from './pages/store/store.component';
 import { PreviewComponent } from './components/preview/preview.component';
 import { SafeHtml } from '@angular/platform-browser';
 import { HomeadminComponent } from './components/pages/homeadmin/homeadmin.component';
+import { AdmintemplatesComponent } from './components/admintemplates/admintemplates.component';
+import { AdminstoresComponent } from './components/adminstores/adminstores.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { HomeadminComponent } from './components/pages/homeadmin/homeadmin.compo
     PreviewComponent,
     SafehtmlPipe,
     HomeadminComponent,
+    AdmintemplatesComponent,
+    AdminstoresComponent,
   ],
   imports: [
     BrowserModule,
