@@ -5,6 +5,14 @@
   width: 100%;
   padding-top: 10vh;
 }
+.decoration-none {
+  color: black;
+  text-decoration: none;
+}
+.decoration-none:hover {
+  color: black;
+  text-decoration: none;
+}
 
 .landing-sections {
   min-height: 90vh;
@@ -15,7 +23,7 @@
   background-color: rgb(53, 54, 55);
 }
 .bg-section2 {
-  background-color: #6e47a4;
+  background-color: #534575e9;
 }
 .bg-section3 {
   background-color: rgb(0, 0, 0);

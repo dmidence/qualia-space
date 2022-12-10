@@ -15,11 +15,11 @@
   </div>
 </main>
 
-<div class="landing-sections bg-section1 row m-0 p-0 p-4">
+<!-- <div class="landing-sections bg-section1 row m-0 p-0 p-4">
   <h2></h2>
   <div class="col-8">imagen</div>
   <div class="col-4">texto</div>
-</div>
+</div> -->
 <div
   class="landing-sections bg-section2 p-4 d-flex justify-content-center flex-column p-4"
 >
@@ -39,11 +39,13 @@
         />
       </div>
       <div class="card-body">
-        <h5 class="card-title text-center">Plan Star</h5>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
+        <a class="decoration-none" [routerLink]="['/', 'registeru']">
+          <h5 class="card-title text-center">Plan Star</h5>
+          <p class="card-text">
+            Si quieres navegar entre las tiendas que tenemos y disfrutar de sus
+            servicios este es tu plan!.¡¿Que esperas!?, Registrate ya!.
+          </p></a
+        >
       </div>
     </div>
     <div class="card" style="width: 25%">
@@ -55,11 +57,14 @@
         />
       </div>
       <div class="card-body">
-        <h5 class="card-title text-center">Plan Galaxy</h5>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
+        <a class="decoration-none" [routerLink]="['/', 'registere']">
+          <h5 class="card-title text-center">Plan Galaxy</h5>
+          <p class="card-text">
+            Si tu empresa es pequeña, o tienes poco conocimiento creando páginas
+            en línea, este es tu plan. Solo Registra tu empresa y descubre de
+            los beneficios que ofrecemos!
+          </p>
+        </a>
       </div>
     </div>
     <div class="card" style="width: 25%">
@@ -71,15 +76,17 @@
         />
       </div>
       <div class="card-body">
-        <h5 class="card-title text-center">Plan Universe</h5>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
+        <a class="decoration-none" [routerLink]="['/', 'registere']">
+          <h5 class="card-title text-center">Plan Universe</h5>
+          <p class="card-text">
+            Si tu empresa es grande este plan es perfecto para tus necesidades!.
+            Trabajemos juntos por el progreso!
+          </p>
+        </a>
       </div>
     </div>
   </div>
 </div>
-<div class="landing-sections bg-section3 p-4">seccion3</div>
+<!-- <div class="landing-sections bg-section3 p-4">seccion3</div> -->
 
 <app-landing-footer></app-landing-footer>
